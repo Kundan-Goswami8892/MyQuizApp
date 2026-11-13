@@ -7,7 +7,7 @@ Staffs of TEAM RADIUM:
 - Gurupreet Singh (Frontend developer, Interface developer, Student of class 12th C)
 
 # About the project
-In this project, we TEAM RADIUM, presenting you a quiz app with a login interface. This app is accessible to 3 different types of users (Students, Admins, Morderators).
+In this project, we TEAM RADIUM, presenting you a quiz app with a login interface. This app is accessible to 3 different types of users (Students, Admins, Moderators).
 ## Students
 They just simply log in and submit there quiz. everytime they log in, system checks for any new updates by the morderators or Admins. Exams and Test can be held by any mods or admins. They can report any suspecious activity.
 ## Teacher
