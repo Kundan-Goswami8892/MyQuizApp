@@ -1,0 +1,46 @@
+import pickle as p
+from pathlib import Path
+import connection as conn
+def inboxExist():
+    global flag_new_install
+    global flag_Recreate_indox
+    global flag_Recreate_indox_dat
+    if Path("C:\\Program Files\\QUIZER").exists():
+        flag_new_install = False
+        if Path("C:\\Program Files\\QUIZER\\inbox").exists():
+            flag_Recreate_indox = False
+            if Path("C:\\Program Files\\QUIZER\\inbox\\inbox.dat").exists():
+                flag_Recreate_indox_dat = False
+                return True
+            else:
+                flag_Recreate_indox_dat = True
+                return False
+        else:
+            flag_Recreate_indox = True
+            return False
+    else:
+        flag_new_install = True
+        return False
+
+def createInbox():
+    if flag_new_install:
+        Path("C:\\Program Files\\QUIZER").mkdir()
+    if flag_Recreate_indox:
+        Path("C:\\Program Files\\QUIZER\\inbox").mkdir()
+    if flag_Recreate_indox_dat:
+        inbox = open("inbox.dat",'wb',newline='')
+        p.dump(["X-------------------QUIZER-------------------X",
+                "\n",
+                "\n",
+                "USER CADANTIAL--------------------->>>",
+                "\n",
+                "\n",
+                "ID : ",
+                "USERNAME : ",
+                "PASSWORD : ",
+                "<<<--------------------------------------------------------->>>",
+                "<<<--------------------------------------------------------->>>",
+                "<<<--------------------------------------------------------->>>"], 
+                inbox)
+        inbox.close()
+
