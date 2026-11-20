@@ -17,6 +17,20 @@ They can promote any student account to an admin account and vice-versa. they ha
 
 # What's missing?
 1. <b>Server connectivity</b> :-  Even though this app is capable of storing user data though SQL, this app is not capable of connecting those data thougher in a server.
-## Why?
-creating a server may not be that hard. But, it comes up with high risk of getting server data leaked, high load on the main host, and might easily crash as this app does not consist multiple threads running in the background. 
-2. <b>
+- Why?
+creating a server port may not be that hard. But, it comes up with high risk of getting server data leaked, high load on the main host, and might easily crash as this app does not consist multiple threads running in the background. 
+2. <b>Crash protection</b> :- If your system crashesh while using the app, your data might corrupt, or get lost.
+- Why?
+It's possible to debug crashesh, but it makes the code more complex and takes time to create such a debugger. Since we are creating this app purely though human intelligence, using AI is <b>NOT</b> an option here.
+3. <b>Global OS approach</b> :- This app may not be able to run on mac or linux, as the codes are ment to run on Windows, and is not excpected to run on other platforms.
+- Why?
+Fixing this problem is one another of an advance problem. It is also fixable, but it also means "writing the code for the same task more that one times". which might make this project complex and harder to maintain. New updates and bug fixes can become much more expensive than usual on time.
+===
+# Project info
+- <b>AIM :- </b> To create a quiz app with a login interface.
+- <b>Requirement :- </b> (Minimum requirements)
+1. Operating system :- Windows 7, 32xbits
+2. Free space :- 10MB (including 8MBs of processing area and uploadable files.)
+3. RAM :- 1GB
+4. Software :- Python.exe 3.13, Pip.exe 3.13, MySQL.
+5. Launcher :- VS Code, IDLE 3.13
