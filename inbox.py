@@ -1,6 +1,10 @@
 import pickle as p
 from pathlib import Path
 import connection as conn
+
+flag_new_install = False
+flag_Recreate_indox = False
+flag_Recreate_indox_dat = False
 def inboxExist():
     global flag_new_install
     global flag_Recreate_indox
@@ -53,6 +57,7 @@ def getInbox():
             return f
         return "nidx"           # 'nidx' means 'no index'
     except:
+        print("error in inbox.py, line 60")
         return "err"            # this means error.
 def getInboxData():
     try:
