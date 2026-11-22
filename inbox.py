@@ -72,3 +72,4 @@ def enterData(data):
     d[6] = "ID : "+str(data[0])
     d[7] = "USERNAME : "+str(data[1])
     d[8] = "PASSWORD : "+str(data[2])
+    createInbox(d)
