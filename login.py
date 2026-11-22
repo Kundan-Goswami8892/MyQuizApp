@@ -2,6 +2,7 @@ import connection as conn
 import inbox
 import toolKit as tk
 import signIn as si
+import time
 def getData():
     rawData = inbox.getInboxData()
     refData = rawData[6:9]
@@ -14,17 +15,24 @@ def getData():
     return finData
 
 
-def LogIn():
+def LogInStudent():
+    data = []
     try:
         cur = conn.connect_Server()
         if inbox.inboxExist():
+            print("   \t| | fetching UserID...")
+            time.sleep(0.5)
             data = getData()
+            print("   \t| | Data fetched successfully...")
+            time.sleep(0.2)
         else:
-            inbox.createInbox()
             data = si.signIn(cur)
-        
+            inbox.createInbox(['','',''])
+        print("   \t| | Uploading your ID...")
         q = "INSERT INTO user_cadantial(username,passwd,sign_up_date,sign_up_time) VALUES('"+data[0]+"','"+data[1]+"','"+tk.getDate+"','"+tk.getTime+"');"
         conn.exe(q)
+        print("   \t| | Upload complete...!")
     except:
-        print("error in login.py, at line 29")
-        
+        print("   \t| | error in login.py, at line 35")
+        return data
+    return data

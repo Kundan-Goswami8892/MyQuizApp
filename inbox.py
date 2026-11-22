@@ -28,7 +28,7 @@ def inboxExist():
         flag_new_install = True
         return False
 
-def createInbox():
+def createInbox(data):
     if flag_new_install:
         Path("C:\\Program Files\\QUIZER").mkdir()
     if flag_Recreate_indox:
@@ -41,12 +41,12 @@ def createInbox():
                 "USER CADANTIAL--------------------->>>",
                 "\n",
                 "\n",
-                "ID : ",
-                "USERNAME : ",
-                "PASSWORD : ",
+                "ID : "+str(data[0]),                 #6
+                "USERNAME : "+str(data[1]),           #7
+                "PASSWORD : "+str(data[2]),           #8
                 "<<<--------------------------------------------------------->>>",
                 "<<<--------------------------------------------------------->>>",
-                "<<<--------------------------------------------------------->>>"], 
+                "<<<--------------------------------------------------------->>>"],
                 inbox)
         inbox.close()
 
@@ -67,3 +67,8 @@ def getInboxData():
         return "nidx"
     except:
         return "err"
+def enterData(data):
+    d = getInboxData()
+    d[6] = "ID : "+str(data[0])
+    d[7] = "USERNAME : "+str(data[1])
+    d[8] = "PASSWORD : "+str(data[2])
