@@ -5,10 +5,12 @@ import signIn as si
 import time
 def getData():
     rawData = inbox.getInboxData()
-    refData = rawData[6:9]
+    refData = rawData[6:9]              # refData stands for 'reference Data'
     finData = []
     for rec in refData:
-        if "USERNAME" in rec:
+        if "ID" in rec:
+            finData.append(rec[4:])
+        elif "USERNAME" in rec:
             finData.append(rec[11:])
         elif "PASSWORD" in rec:
             finData.append(rec[11:])
@@ -26,13 +28,14 @@ def LogInStudent():
             print("   \t| | Data fetched successfully...")
             time.sleep(0.2)
         else:
-            data = si.signIn(cur)
+            data = si.signInStudent(cur)
             inbox.createInbox(['','',''])
         print("   \t| | Uploading your ID...")
         q = "INSERT INTO user_cadantial(username,passwd,sign_up_date,sign_up_time) VALUES('"+data[0]+"','"+data[1]+"','"+tk.getDate+"','"+tk.getTime+"');"
         conn.exe(q)
         print("   \t| | Upload complete...!")
     except:
-        print("   \t| | error in login.py, at line 35")
+        print("error in login.py, at line 35")
         return data
+    data.append(cur)
     return data

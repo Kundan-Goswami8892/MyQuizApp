@@ -9,13 +9,13 @@ def inboxExist():
     global flag_new_install
     global flag_Recreate_indox
     global flag_Recreate_indox_dat
-    if Path("C:\\Program Files\\QUIZER").exists():
+    if Path("E:\\MyQuizApp\\QUIZER").exists():
         flag_new_install = False
         # flag_Recreate_indox = False
         # flag_Recreate_indox_dat = False
-        if Path("C:\\Program Files\\QUIZER\\inbox").exists():
+        if Path("E:\\MyQuizApp\\QUIZER\\inbox").exists():
             flag_Recreate_indox = False
-            if Path("C:\\Program Files\\QUIZER\\inbox\\inbox.dat").exists():
+            if Path("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat").exists():
                 flag_Recreate_indox_dat = False
                 return True
             else:
@@ -30,11 +30,11 @@ def inboxExist():
 
 def createInbox(data):
     if flag_new_install:
-        Path("C:\\Program Files\\QUIZER").mkdir()
+        Path("E:\\MyQuizApp\\QUIZER").mkdir()
     if flag_Recreate_indox:
-        Path("C:\\Program Files\\QUIZER\\inbox").mkdir()
+        Path("E:\\MyQuizApp\\QUIZER\\inbox").mkdir()
     if flag_Recreate_indox_dat:
-        inbox = open("C:\\Program Files\\QUIZER\\inbox\\inbox.dat",'wb',newline='')
+        inbox = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat",'wb',newline='')
         p.dump(["X-------------------QUIZER-------------------X",
                 "\n",
                 "\n",
@@ -53,7 +53,7 @@ def createInbox(data):
 def getInbox():
     try:
         if not flag_Recreate_indox_dat:
-            f = open("C:\\Program Files\\QUIZER\\inbox\\inbox.dat")
+            f = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat")
             return f
         return "nidx"           # 'nidx' means 'no index'
     except:
@@ -62,7 +62,7 @@ def getInbox():
 def getInboxData():
     try:
         if not flag_Recreate_indox_dat:
-            f = open("C:\\Program Files\\QUIZER\\inbox\\inbox.dat")
+            f = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat")
             return f.read()
         return "nidx"
     except:
