@@ -15,6 +15,7 @@ import connection as conn
 import toolKit as tk
 import login
 import time
+import Quizer
 def appLogo():
     clr()
     print("+------------------------------------------------------------------+")
@@ -25,33 +26,29 @@ def appLogo():
 
 def ScreenOne():
     appLogo()
-    fetc = 100
-    while fetc == 100:
+    flag=True
+    while flag:
         print("1  \t| | Login")
         print("   \t| |   a) Student")
         print("   \t| |   b) Admin")
-        print("   \t| |   c) Moderator")
         print("2  \t| | Credits")
         print("3  \t| | Exit")
-        print("...\t| | Enter your choice, (e.g. '1a' or '3').")
-        c = input("Enter your choice: ")
-        fetc = tk.fetchOption(c)
-    if fetc == 101:
-        StudentScreen(login.LogInStudent())
-    elif fetc == 102:
-        ''' !!!!this function is in work... !!!!'''
-        #logAdminScreen(login.LogInAdmin())
-    elif fetc == 103:
-        ''' !!!!this function is in work... !!!!'''
-        #logModeratorScreen(login.LogInMod())
-    elif fetc == 200:
-        creditScreen()
-    elif fetc == 300:
-        return "end"
-    else:
-        print("   \t| | =Wrong Choice=")
-        clr()
-        ScreenOne()
+        print("...\t| | Enter your choice, (e.g. '1a' or '2').")
+        c = input("Enter your choice: ").lower()
+        if c == '1a':
+            StudentScreen(login.LogInStudent())
+        elif c == '1b':
+            ''' !!!!this function is in work... !!!!'''
+            #logAdminScreen(login.LogInAdmin())
+        elif c == '2':
+            creditScreen()
+        elif c == '3':
+            flag = False
+            return flag
+        else:
+            print("   \t| | =Wrong Choice=")
+            clr()
+            ScreenOne()
 def clr():
     print("\n"*100)
 def creditScreen():
@@ -69,8 +66,7 @@ def StudentScreen(data):
     print("   \t| | Loading your ID...")
     time.sleep(1)
     appLogo()
-    fetch = 300
-    while fetch > 200 or fetch < 100:
+    while True:
         print("   \t| | User:- ",data[1])
         print("   \t| | ID:- ",data[0])
         print("   \t| | ")
@@ -78,13 +74,17 @@ def StudentScreen(data):
         print("1  \t| | Solve some quiz")
         print("2  \t| | Exit")
         c = input("Enter your choice: ")
-        fetch = tk.fetchOption(c)
-    if fetch == 100:
-        SolveQuiz(data[0],data[2],data[3])
-    elif fetch == 200:
-        ScreenOne()
+        if c == '1':
+            print("=> \t| | SOLVE SOME QUIZES")
+            print("   \t| | ")
+            print("   \t| | ")
+            print("   \t| | ")
+            SolveQuiz(data[0],data[2],data[3])
+        elif c == '2':
+            ScreenOne()
 
 def SolveQuiz(ID,passwd,cur):
-    i = 0
-    while i<20:
-        ''' get random quiz, assign it to a quiz variable, and blah blah blah.'''
+    i = 1
+    quizi = Quizer.getQuizRand(20)
+    for quiz in quizi:
+        print(i,"  \t| |",quiz)

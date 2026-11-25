@@ -34,7 +34,7 @@ def createInbox(data):
     if flag_Recreate_indox:
         Path("E:\\MyQuizApp\\QUIZER\\inbox").mkdir()
     if flag_Recreate_indox_dat:
-        inbox = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat",'wb',newline='')
+        inbox = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat",'wb')
         p.dump(["X-------------------QUIZER-------------------X",
                 "\n",
                 "\n",
@@ -62,8 +62,14 @@ def getInbox():
 def getInboxData():
     try:
         if not flag_Recreate_indox_dat:
-            f = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat")
-            return f.read()
+            f = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat",'rb')
+            data = []
+            while True:
+                try:
+                    data.append(p.load(f))
+                except:
+                    break
+            return data
         return "nidx"
     except:
         return "err"
@@ -73,3 +79,8 @@ def enterData(data):
     d[7] = "USERNAME : "+str(data[1])
     d[8] = "PASSWORD : "+str(data[2])
     createInbox(d)
+def hasData():
+    data = getInboxData()
+    if data[6] == 'ID : ':
+        return False
+    return True
