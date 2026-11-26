@@ -28,12 +28,12 @@ def inboxExist():
         flag_new_install = True
         return False
 
-def createInbox(data):
+def createInbox(data,mode):
     if flag_new_install:
         Path("E:\\MyQuizApp\\QUIZER").mkdir()
     if flag_Recreate_indox:
         Path("E:\\MyQuizApp\\QUIZER\\inbox").mkdir()
-    if flag_Recreate_indox_dat:
+    if mode.lower() == 's':
         inbox = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat",'wb')
         p.dump(["X-------------------QUIZER-------------------X",
                 "\n",
@@ -44,6 +44,34 @@ def createInbox(data):
                 "ID : "+str(data[0]),                 #6
                 "USERNAME : "+str(data[1]),           #7
                 "PASSWORD : "+str(data[2]),           #8
+                "<<<--------------------------------------------------------->>>",
+                "<<<--------------------------------------------------------->>>",
+                "<<<--------------------------------------------------------->>>"],
+                inbox)
+        inbox.close()
+    elif mode.lower() == 'a':
+        inbox = open("E:\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat",'wb')
+        p.dump(["X-------------------QUIZER-------------------X",
+                "\n",
+                "\n",
+                "USER CADANTIAL--------------------->>>",
+                "\n",
+                "\n",
+                "ID : 1",                 #6
+                "USERNAME : KUNDAN GOSWAMI",           #7
+                "PASSWORD : kunadjo8892",           #8
+                "<<<--------------------------------------------------------->>>",
+                "<<<--------------------------------------------------------->>>",
+                "<<<--------------------------------------------------------->>>",
+                "ID : 2",                 #12
+                "USERNAME : DIVYANSHU JAISWAL",           #13
+                "PASSWORD : 12345678",           #14
+                "<<<--------------------------------------------------------->>>",
+                "<<<--------------------------------------------------------->>>",
+                "<<<--------------------------------------------------------->>>",
+                "ID : 3",                 #18
+                "USERNAME : GUPUPREET SINGH",           #19
+                "PASSWORD : 87654321",           #20
                 "<<<--------------------------------------------------------->>>",
                 "<<<--------------------------------------------------------->>>",
                 "<<<--------------------------------------------------------->>>"],
@@ -63,22 +91,25 @@ def getInboxData():
     try:
         if not flag_Recreate_indox_dat:
             f = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat",'rb')
-            data = []
-            while True:
-                try:
-                    data.append(p.load(f))
-                except:
-                    break
+            data = p.load(f)
             return data
-        return "nidx"
     except:
         return "err"
+def getAdminInboxData():
+    if Path("E:\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat").exists():
+        f = open("E:\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat",'rb')
+    else:
+        createInbox([],'a')
+        f = open("E:\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat",'rb')
+    data= p.load(f)
+    return data
+    
 def enterData(data):
     d = getInboxData()
     d[6] = "ID : "+str(data[0])
     d[7] = "USERNAME : "+str(data[1])
     d[8] = "PASSWORD : "+str(data[2])
-    createInbox(d)
+    createInbox(d,'s')
 def hasData():
     data = getInboxData()
     if data[6] == 'ID : ':

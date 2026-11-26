@@ -6,8 +6,8 @@ def fetchSQLdata(cur):
     return data
 def signInStudent(cur):
     
-    username = input("Enter your Username: ")
-    passwd = input("Enter your Password: ")
+    username = input("   \t| | Enter your Username: ")
+    passwd = input("   \t| | Enter your Password: ")
     try:
         #print("------SignIn.py before cursor--------------------------------")
         cur.execute("INSERT INTO user_cadantial(username,passwd,sign_up_date,sign_up_time) VALUES('"+username+"','"+passwd+"','"+tk.getDate+"','"+tk.getTime+"');")
@@ -20,3 +20,4 @@ def signInStudent(cur):
     data = fetchSQLdata(cur)
     #print("data fetched--------------------------------")
     return data
+
