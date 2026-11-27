@@ -1,16 +1,16 @@
 import pickle
 import random
-def getQuizes():
+def getQuizes(drive = 'E:'):
     data = []
-    with open("E:\\MyQuizApp\\QUIZER\\quiz.dat",'rb') as f:
+    with open(drive+"\\MyQuizApp\\QUIZER\\quiz.dat",'rb') as f:
         while True:
             try:
                 data.append(pickle.load(f))
             except:
                 break
     return data
-def getQuizRand(amt):
-    in_quizes = getQuizes()
+def getQuizRand(amt, drive = 'E:'):
+    in_quizes = getQuizes(drive)
     out_quizes = []
     i=0
     while i<amt:
@@ -21,12 +21,12 @@ def getQuizRand(amt):
         except:
             break
     return out_quizes
-def addQuizes():
+def addQuizes(drive = 'E:'):
     try:
-        f = open("E:\\MyQuizApp\\QUIZER\\quiz.dat",'ab')
+        f = open(drive+"\\MyQuizApp\\QUIZER\\quiz.dat",'ab')
     except:
-        f = open("E:\\MyQuizApp\\QUIZER\\quiz.dat",'wb')
-    i = getIndex()
+        f = open(drive+"\\MyQuizApp\\QUIZER\\quiz.dat",'wb')
+    i = getIndex(drive)
     c = input("   \t| | Enter new Quiz? <y/n>\n->")
     quiz,op1,op2,op3,op4,c_op = '','','','','',0
     while c[0] in 'yY':
@@ -52,9 +52,9 @@ def addQuizes():
     print("===============================")
     print("==QUIZZES HAVE BEEN SUBMITTED==")
     print("===============================")
-def getIndex():
+def getIndex(drive = 'E:'):
     data = []
-    with open("E:\\MyQuizApp\\QUIZER\\quiz.dat",'rb') as f:
+    with open(drive+"\\MyQuizApp\\QUIZER\\quiz.dat",'rb') as f:
         while True:
             try:
                 data.append(pickle.load(f))

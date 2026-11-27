@@ -18,7 +18,7 @@ def end():
     print("X----------------------------------------------------X")
 
     
-def ScreenOne():
+def ScreenOne(drive = 'E:'):
     appLogo()
     flag=True
     while flag:
@@ -31,9 +31,9 @@ def ScreenOne():
         c = input("   \t| | Enter your choice: ")
         c = c.lower()
         if c == '1a':
-            StudentScreen(login.LogInStudent())
+            StudentScreen(login.LogInStudent(drive))
         elif c == '1b':
-            AdminScreen(login.LogInAdmin())
+            AdminScreen(login.LogInAdmin(drive))
         elif c == '2':
             creditScreen()
         elif c == '3':
@@ -54,8 +54,8 @@ def creditScreen():
     print("   \t| |\tDivyanshu Jaiswal (Database Manager, Student of class 12th C)")
     print("   \t| |\tGurupreet Singh (Frontend developer, Interface developer, Student of class 12th C)")
     c = input("   \t| | Type any key then Enter to Exit -> ")
-    ScreenOne()
-def StudentScreen(data):
+    return
+def StudentScreen(data, drive = 'E:'):
     print("   \t| | Loading your ID...")
     time.sleep(1)
     appLogo()
@@ -72,12 +72,12 @@ def StudentScreen(data):
             print("   \t| | ")
             print("   \t| | ")
             print("   \t| | ",data[3])
-            SolveQuiz(data)
+            SolveQuiz(data, drive = 'E:')
         elif c == '2':
             return
-def AdminScreen(data):
+def AdminScreen(data,drive = 'E:'):
     if data == 'den':
-        ScreenOne()
+        return
     print("   \t| | Loading your ID...")
     time.sleep(1)
     appLogo()
@@ -94,13 +94,13 @@ def AdminScreen(data):
             print("   \t| | ")
             print("   \t| | ")
             print("   \t| | ")
-            Quizer.addQuizes()
+            Quizer.addQuizes(drive)
         elif c == '2':
             return
-def SolveQuiz(data):
+def SolveQuiz(data, drive = 'E:'):
     i = 1
     sc = 0
-    quizi = Quizer.getQuizRand(20)
+    quizi = Quizer.getQuizRand(20, drive)
     for quiz in quizi:
         print(i,"  \t| |",quiz[1])
         print("   \t| | 1) ",quiz[2])
@@ -124,4 +124,4 @@ def SolveQuiz(data):
         msg = "   \t| | === OMG!! THAT's A PERFECT SCORE!!!"
     print(msg)
     data[3] = str(sc)+msg
-    StudentScreen(data)
+    StudentScreen(data, drive)

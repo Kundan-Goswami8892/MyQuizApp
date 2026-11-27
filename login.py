@@ -69,7 +69,7 @@ def getAdminData():
     finData = []
     return lstData
 
-def LogInStudent():
+def LogInStudent(drive  = 'E:'):
     data = []
     cur = conn.connect_Server()
     if inbox.inboxExist():
@@ -81,7 +81,7 @@ def LogInStudent():
         time.sleep(0.2)
     else:
         data = si.signInStudent(cur)
-        inbox.createInbox(data,'s')
+        inbox.createInbox(data,'s',drive)
         #print(data)
     print("   \t| | Uploading your ID...")
     #print(data)
@@ -92,10 +92,10 @@ def LogInStudent():
     data.append(cur)
     return data
 
-def LogInAdmin():
+def LogInAdmin(drive = 'E:'):
     data = []
     cur = conn.connect_Server()
-    if inbox.inboxExist():                         # (O) To be updated, in inbox.py
+    if inbox.inboxExist(drive):                         # (O) To be updated, in inbox.py
         print("   \t| | Checking Admin details...")
         time.sleep(0.5)
         #print("login.py >> LogInAdmin >> data :",data)

@@ -5,17 +5,17 @@ import connection as conn
 flag_new_install = False
 flag_Recreate_indox = False
 flag_Recreate_indox_dat = False
-def inboxExist():
+def inboxExist(drive = 'E:'):
     global flag_new_install
     global flag_Recreate_indox
     global flag_Recreate_indox_dat
-    if Path("E:\\MyQuizApp\\QUIZER").exists():
+    if Path(drive+"\\MyQuizApp\\QUIZER").exists():
         flag_new_install = False
         # flag_Recreate_indox = False
         # flag_Recreate_indox_dat = False
-        if Path("E:\\MyQuizApp\\QUIZER\\inbox").exists():
+        if Path(drive+"\\MyQuizApp\\QUIZER\\inbox").exists():
             flag_Recreate_indox = False
-            if Path("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat").exists():
+            if Path(drive+"\\MyQuizApp\\QUIZER\\inbox\\inbox.dat").exists():
                 flag_Recreate_indox_dat = False
                 return True
             else:
@@ -28,13 +28,13 @@ def inboxExist():
         flag_new_install = True
         return False
 
-def createInbox(data,mode):
+def createInbox(data,mode,drive = 'E:'):
     if flag_new_install:
-        Path("E:\\MyQuizApp\\QUIZER").mkdir()
+        Path(drive+"\\MyQuizApp\\QUIZER").mkdir()
     if flag_Recreate_indox:
-        Path("E:\\MyQuizApp\\QUIZER\\inbox").mkdir()
+        Path(drive+"\\MyQuizApp\\QUIZER\\inbox").mkdir()
     if mode.lower() == 's':
-        inbox = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat",'wb')
+        inbox = open(drive+"\\MyQuizApp\\QUIZER\\inbox\\inbox.dat",'wb')
         p.dump(["X-------------------QUIZER-------------------X",
                 "\n",
                 "\n",
@@ -50,7 +50,7 @@ def createInbox(data,mode):
                 inbox)
         inbox.close()
     elif mode.lower() == 'a':
-        inbox = open("E:\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat",'wb')
+        inbox = open(drive+"\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat",'wb')
         p.dump(["X-------------------QUIZER-------------------X",
                 "\n",
                 "\n",
@@ -78,29 +78,29 @@ def createInbox(data,mode):
                 inbox)
         inbox.close()
 
-def getInbox():
+def getInbox(drive = 'E:'):
     try:
         if not flag_Recreate_indox_dat:
-            f = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat")
+            f = open(drive+"\\MyQuizApp\\QUIZER\\inbox\\inbox.dat")
             return f
         return "nidx"           # 'nidx' means 'no index'
     except:
         print("error in inbox.py, line 60")
         return "err"            # this means error.
-def getInboxData():
+def getInboxData(drive = 'E:'):
     try:
         if not flag_Recreate_indox_dat:
-            f = open("E:\\MyQuizApp\\QUIZER\\inbox\\inbox.dat",'rb')
+            f = open(drive+"\\MyQuizApp\\QUIZER\\inbox\\inbox.dat",'rb')
             data = p.load(f)
             return data
     except:
         return "err"
-def getAdminInboxData():
-    if Path("E:\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat").exists():
-        f = open("E:\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat",'rb')
+def getAdminInboxData(drive = 'E:'):
+    if Path(drive+"\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat").exists():
+        f = open(drive+"\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat",'rb')
     else:
         createInbox([],'a')
-        f = open("E:\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat",'rb')
+        f = open(drive+"\\MyQuizApp\\QUIZER\\inbox\\admininbox.dat",'rb')
     data= p.load(f)
     return data
     
